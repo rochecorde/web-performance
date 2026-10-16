@@ -88,7 +88,9 @@ contactForm?.addEventListener("submit", async (event) => {
         contactForm.reset();
     } catch (error) {
         console.error("Échec de l’envoi du formulaire de contact :", error);
-        contactFormStatus.textContent = "L’envoi a échoué. Réessayez ou écrivez-nous à backerwebmaster@gmail.com.";
+        contactFormStatus.textContent = error instanceof Error && /activation/i.test(error.message)
+            ? "Le formulaire attend son activation. Consultez backerwebmaster@gmail.com et cliquez sur le lien envoyé par FormSubmit, puis réessayez."
+            : "L’envoi a échoué. Réessayez ou écrivez-nous à backerwebmaster@gmail.com.";
         contactFormStatus.dataset.state = "error";
     } finally {
         submitButton.disabled = false;
