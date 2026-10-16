@@ -13,7 +13,7 @@ Site vitrine de Web Performance, réalisé en HTML, CSS et JavaScript.
 
 Ouvrir `index.html` dans un navigateur. Les photos de présentation sont chargées depuis Unsplash et nécessitent une connexion Internet.
 
-Le formulaire de contact prépare un message dans l’application de messagerie du visiteur. Il ne transmet ni n’enregistre les données sur un serveur.
+Le formulaire transmet les messages à l’adresse de contact via FormSubmit. Lors du premier envoi, FormSubmit peut demander de confirmer l’adresse e-mail destinataire avant d’activer la réception.
 
 ## Publier avec GitHub Pages
 

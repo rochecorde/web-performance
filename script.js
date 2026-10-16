@@ -38,18 +38,59 @@ if (siteNavigation && navigationToggle) {
 }
 
 const contactForm = document.querySelector("#contact-form");
+const contactFormStatus = document.querySelector("#contact-form-status");
 
-contactForm?.addEventListener("submit", (event) => {
+contactForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const name = String(formData.get("name")).trim();
-    const email = String(formData.get("email")).trim();
-    const message = String(formData.get("message")).trim();
-    const emailDetails = new URLSearchParams({
-        subject: `Demande de projet de ${name}`,
-        body: `Nom : ${name}\nE-mail : ${email}\n\nProjet :\n${message}`,
-    });
+    if (!contactForm.reportValidity()) {
+        return;
+    }
 
-    window.location.href = `mailto:backerwebmaster@gmail.com?${emailDetails.toString()}`;
+    const formData = new FormData(contactForm);
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const honeypot = String(formData.get("_honey") || "").trim();
+
+    if (honeypot) {
+        return;
+    }
+
+    submitButton.disabled = true;
+    contactFormStatus.textContent = "Envoi de votre demande…";
+    contactFormStatus.dataset.state = "sending";
+
+    try {
+        const response = await fetch("https://formsubmit.co/ajax/backerwebmaster@gmail.com", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                message,
+                _subject: `Demande de projet de ${name}`,
+                _honey: honeypot,
+            }),
+        });
+        const result = await response.json();
+
+        if (!response.ok || !(result.success === true || result.success === "true")) {
+            throw new Error(result.message || "Le service n’a pas pu accepter le formulaire.");
+        }
+
+        contactFormStatus.textContent = "Merci, votre demande a bien été envoyée. Nous vous répondrons dès que possible.";
+        contactFormStatus.dataset.state = "success";
+        contactForm.reset();
+    } catch (error) {
+        console.error("Échec de l’envoi du formulaire de contact :", error);
+        contactFormStatus.textContent = "L’envoi a échoué. Réessayez ou écrivez-nous à backerwebmaster@gmail.com.";
+        contactFormStatus.dataset.state = "error";
+    } finally {
+        submitButton.disabled = false;
+    }
 });

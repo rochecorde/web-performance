@@ -617,6 +617,36 @@ h1 span {
     font-weight: 600;
 }
 
+.contact-form .button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.contact-form__honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.contact-form__status {
+    min-height: 1.5em;
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.contact-form__status[data-state="success"] {
+    color: #17683a;
+}
+
+.contact-form__status[data-state="error"] {
+    color: #a22c2c;
+}
+
 .contact-form__note {
     margin: 4px 0 0;
     color: #64728a;
