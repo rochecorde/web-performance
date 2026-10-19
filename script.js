@@ -40,7 +40,7 @@ if (siteNavigation && navigationToggle) {
 const contactForm = document.querySelector("#contact-form");
 const contactFormStatus = document.querySelector("#contact-form-status");
 
-contactForm?.addEventListener("submit", async (event) => {
+contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
 
     if (!contactForm.reportValidity()) {
@@ -48,51 +48,14 @@ contactForm?.addEventListener("submit", async (event) => {
     }
 
     const formData = new FormData(contactForm);
-    const submitButton = contactForm.querySelector('button[type="submit"]');
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const message = String(formData.get("message") || "").trim();
-    const honeypot = String(formData.get("_honey") || "").trim();
+    const subject = `Demande de projet de ${name}`;
+    const body = `Nom : ${name}\nAdresse e-mail : ${email}\n\nMessage :\n${message}`;
+    const mailtoUrl = `mailto:backerwebmaster@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    if (honeypot) {
-        return;
-    }
-
-    submitButton.disabled = true;
-    contactFormStatus.textContent = "Envoi de votre demande…";
-    contactFormStatus.dataset.state = "sending";
-
-    try {
-        const response = await fetch("https://formsubmit.co/ajax/backerwebmaster@gmail.com", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                message,
-                _subject: `Demande de projet de ${name}`,
-                _honey: honeypot,
-            }),
-        });
-        const result = await response.json();
-
-        if (!response.ok || !(result.success === true || result.success === "true")) {
-            throw new Error(result.message || "Le service n’a pas pu accepter le formulaire.");
-        }
-
-        contactFormStatus.textContent = "Merci, votre demande a bien été envoyée. Nous vous répondrons dès que possible.";
-        contactFormStatus.dataset.state = "success";
-        contactForm.reset();
-    } catch (error) {
-        console.error("Échec de l’envoi du formulaire de contact :", error);
-        contactFormStatus.textContent = error instanceof Error && /activation/i.test(error.message)
-            ? "Le formulaire attend son activation. Consultez backerwebmaster@gmail.com et cliquez sur le lien envoyé par FormSubmit, puis réessayez."
-            : "L’envoi a échoué. Réessayez ou écrivez-nous à backerwebmaster@gmail.com.";
-        contactFormStatus.dataset.state = "error";
-    } finally {
-        submitButton.disabled = false;
-    }
+    contactFormStatus.textContent = "Votre application e-mail devrait s’ouvrir avec votre message. Vérifiez-le puis cliquez sur Envoyer.";
+    contactFormStatus.removeAttribute("data-state");
+    window.location.href = mailtoUrl;
 });
