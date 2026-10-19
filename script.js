@@ -53,7 +53,7 @@ contactForm?.addEventListener("submit", (event) => {
     const message = String(formData.get("message") || "").trim();
     const subject = `Demande de projet de ${name}`;
     const body = `Nom : ${name}\nAdresse e-mail : ${email}\n\nMessage :\n${message}`;
-    const mailtoUrl = `mailto:backerwebmaster@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `mailto:backertwebmaster@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     contactFormStatus.textContent = "Votre application e-mail devrait s’ouvrir avec votre message. Vérifiez-le puis cliquez sur Envoyer.";
     contactFormStatus.removeAttribute("data-state");

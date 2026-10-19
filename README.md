@@ -13,7 +13,7 @@ Site vitrine de Web Performance, réalisé en HTML, CSS et JavaScript.
 
 Ouvrir `index.html` dans un navigateur. Les photos de présentation sont chargées depuis Unsplash et nécessitent une connexion Internet.
 
-Le formulaire ouvre l’application e-mail de la personne avec le destinataire, l’objet et le message préremplis. La personne doit ensuite envoyer le message depuis cette application. Si aucune application e-mail n’est configurée, elle peut écrire directement à `backerwebmaster@gmail.com`.
+Le formulaire ouvre l’application e-mail de la personne avec le destinataire, l’objet et le message préremplis. La personne doit ensuite envoyer le message depuis cette application. Si aucune application e-mail n’est configurée, elle peut écrire directement à `backertwebmaster@gmail.com`.
 
 ## Publier avec GitHub Pages
 
