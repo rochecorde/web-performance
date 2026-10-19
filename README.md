@@ -6,14 +6,14 @@ Site vitrine de Web Performance, réalisé en HTML, CSS et JavaScript.
 
 - `index.html` : contenu et sections du site.
 - `style.css` : mise en page et styles adaptatifs.
-- `script.js` : menu mobile et préparation d’un e-mail depuis le formulaire de contact.
+- `script.js` : menu mobile et envoi AJAX du formulaire de contact.
 - `logo entreprise.png` : logo utilisé sur le site.
 
 ## Prévisualiser le site
 
 Ouvrir `index.html` dans un navigateur. Les photos de présentation sont chargées depuis Unsplash et nécessitent une connexion Internet.
 
-Le formulaire ouvre l’application e-mail de la personne avec le destinataire, l’objet et le message préremplis. La personne doit ensuite envoyer le message depuis cette application. Si aucune application e-mail n’est configurée, elle peut écrire directement à `backertwebmaster@gmail.com`.
+Le formulaire envoie les demandes via FormSubmit à `backertwebmaster@gmail.com`. La première soumission peut nécessiter l’activation de l’adresse par e-mail.
 
 ## Publier avec GitHub Pages
 
