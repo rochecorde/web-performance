@@ -15,6 +15,10 @@ Ouvrir `index.html` dans un navigateur. Les photos de présentation sont chargé
 
 Le formulaire envoie les demandes via FormSubmit à `backertwebmaster@gmail.com` et met `dev.kkhalilov@gmail.com` en copie. La première soumission peut nécessiter l’activation de l’adresse principale par e-mail.
 
+## Version PHP
+
+Le dossier [`version-php/`](./version-php/) contient une variante du site avec un endpoint PHP pour le formulaire. Cette variante n'est pas utilisée par GitHub Pages, qui ne peut pas exécuter PHP. Elle nécessite un hébergement PHP et la configuration des variables d'environnement décrites dans `version-php/README.md`.
+
 ## Publier avec GitHub Pages
 
 1. Créer un dépôt GitHub public nommé `web-performance`.
