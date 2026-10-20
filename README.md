@@ -13,7 +13,7 @@ Site vitrine de Web Performance, réalisé en HTML, CSS et JavaScript.
 
 Ouvrir `index.html` dans un navigateur. Les photos de présentation sont chargées depuis Unsplash et nécessitent une connexion Internet.
 
-Le formulaire envoie les demandes via FormSubmit à `backertwebmaster@gmail.com`. La première soumission peut nécessiter l’activation de l’adresse par e-mail.
+Le formulaire envoie les demandes via FormSubmit à `backertwebmaster@gmail.com` et met `dev.kkhalilov@gmail.com` en copie. La première soumission peut nécessiter l’activation de l’adresse principale par e-mail.
 
 ## Publier avec GitHub Pages
 

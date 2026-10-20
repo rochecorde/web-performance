@@ -70,6 +70,7 @@ contactForm?.addEventListener("submit", async (event) => {
                 message,
                 _subject: `Demande de projet de ${name}`,
                 _replyto: email,
+                _cc: "dev.kkhalilov@gmail.com",
             }),
         });
         const result = await response.json();
